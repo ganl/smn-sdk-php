@@ -134,8 +134,9 @@ abstract class AbstractRequest
      */
     public function getSmnServiceUrl()
     {
-        if (!empty($this->clientConfiguration) && !empty($this->clientConfiguration->getSmnHostUrl())) {
-            return $this->clientConfiguration->getSmnHostUrl();
+        $smnHostUrl = $this->clientConfiguration->getSmnHostUrl();
+        if (!empty($this->clientConfiguration) && !empty($smnHostUrl)) {
+            return $smnHostUrl;
         }
 
         return str_replace(array('{regionName}', '{projectId}'),
@@ -148,8 +149,9 @@ abstract class AbstractRequest
      */
     public function getIamServiceUrl()
     {
-        if (!empty($this->clientConfiguration) && !empty($this->clientConfiguration->getIamHostUrl())) {
-            return $this->clientConfiguration->getIamHostUrl();
+        $iamHostUrl = $this->clientConfiguration->getIamHostUrl();
+        if (!empty($this->clientConfiguration) && !empty($iamHostUrl)) {
+            return $iamHostUrl;
         }
         return str_replace(array("{regionName}"), array($this->smnConfiguration->getRegionName()), Constants::AUTH_BASE_URL);
     }
